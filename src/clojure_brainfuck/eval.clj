@@ -4,22 +4,6 @@
 
 (declare evaluate_tree)
 
-
-;(defn evaluate_nodex [memory c]
-;  (let [{:keys [l r v]} memory]
-;    (cond
-;      (= (first c) :p ) (update-in memory [:v] (fit-comp inc))
-;      (= (first c) :m ) (update-in memory  [:v] (fit-comp dec))
-;      (= (first c) :h ) {:l (rest l)   :r (cons v r) :v (fit (first l))}
-;      (= (first c) :l ) {:l (cons v l) :r (rest r)   :v (fit (first r))}
-;      (= (first c) :r ) (let [ch (.read *in*)] (assoc memory :v (fit ch)))
-;      (= (first c) :w ) (do (print (str (char v))) (flush) memory)
-;      (= (first c) :b ) (if (= (:v memory) 0) memory (evaluate_node (evaluate_tree memory (rest c) ) c))
-;      :else memory ; Ignore everything else
-;    )
-;  )
-;)
-
 ; Evaluates only one operation.
 ; p : increment the byte at the data pointer
 ; m : decrement the byte at the data pointer
