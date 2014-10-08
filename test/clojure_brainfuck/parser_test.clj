@@ -1,5 +1,6 @@
 (ns clojure-brainfuck.parser-test
   (:require [clojure.test :refer :all]
+            [clojure.data.generators :as gen]
             [clojure-brainfuck.parser :refer :all]))
 
 (deftest code-without-brackets
@@ -34,10 +35,23 @@
 
 (deftest simple-brackets-recursion
   (testing "Parser is recursive in bracket. Inner bracket code parser result must be equal to the bracket part of the full code result"
-    (let [before_code "<>..+-" after_code "++---" inner_code "<<<>>++<>-,."] (is (= 
+    (let [before_code "<>..+-" after_code "++---" inner_code "<<<>>++<>-,."] (is (=
       (rest (nth (bf-parser (str before_code  "[" inner_code "]" after_code )) (count before_code)))
       (bf-parser inner_code)
                                                                               ))
+    )
+  )
+)
+
+(deftest simple-brackets-recursion-using-gen
+  (testing "The gen version of the test: Parser is recursive in bracket. Inner bracket code parser result must be equal to the bracket part of the full code result"
+    (let [before_code (gen/string #(gen/one-of "+" "-" "<" ">" "." ",") 10)
+          after_code  (gen/string #(gen/one-of "+" "-" "<" ">" "." ",") 10)
+          inner_code  (gen/string #(gen/one-of "+" "-" "<" ">" "." ",") 10)
+          compl_code  (str before_code  "[" inner_code "]" after_code ) ] (is (=
+      (rest (nth (bf-parser compl_code) (count before_code)))
+      (bf-parser inner_code)
+                                                                                   ))
     )
   )
 )
