@@ -1,14 +1,54 @@
 # clojure-brainfuck
 
-A Clojure library designed to ... well, that part is up to you.
+Interpreter for the
+[brainfuck programming language](http://www.muppetlabs.com/~breadbox/bf/)
 
 ## Usage
 
-FIXME
+lein run resources/hello.bf
+> Hello World!
 
-## License
+lein run resources/fibonacci.bf
+> 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
 
-Copyright © 2014 FIXME
+lein run resources/fibonacci.bf
+>
+                                *    
+                               * *    
+                              *   *    
+                             * * * *    
+                            *       *    
+                           * *     * *    
+                          *   *   *   *    
+                         * * * * * * * *    
+                        *               *    
+                       * *             * *    
+                      *   *           *   *    
+                     * * * *         * * * *    
+                    *       *       *       *    
+                   * *     * *     * *     * *    
+                  *   *   *   *   *   *   *   *    
+                 * * * * * * * * * * * * * * * *    
+                *                               *    
+               * *                             * *    
+              *   *                           *   *    
+             * * * *                         * * * *    
+            *       *                       *       *    
+           * *     * *                     * *     * *    
+          *   *   *   *                   *   *   *   *    
+         * * * * * * * *                 * * * * * * * *    
+        *               *               *               *    
+       * *             * *             * *             * *    
+      *   *           *   *           *   *           *   *    
+     * * * *         * * * *         * * * *         * * * *    
+    *       *       *       *       *       *       *       *    
+   * *     * *     * *     * *     * *     * *     * *     * *    
+  *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *    
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *    
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+### Tests
+
+lein test
+
+## Documentation
+http://mbuceta.github.io/clojure-brainfuck/
