@@ -20,11 +20,15 @@
     "
   )
 )
-(def improved-bf-parser
+
+; Optional parser taking into account whitespaces
+; It's more complex but throws better error messages than the bf-parser
+(def optional-bf-parser
   (insta/parser
     "
-    <expr>= (op | b)+
+    <expr>=  (<whitespace> op <whitespace> | <whitespace> b <whitespace>)+
     <op>= (p|m|r|w|l|h)
+    <whitespace> = #'\\s*'
     b = <'['> expr <']'>
     p = <'+'>
     m = <'-'>
