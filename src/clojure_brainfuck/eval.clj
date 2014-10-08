@@ -2,7 +2,7 @@
     (use [clojure-brainfuck.memory :as mem])
   )
 
-(declare evaluate_tree)
+(declare evaluate-tree)
 
 ; Evaluates only one operation.
 ; p : increment the byte at the data pointer
@@ -11,8 +11,8 @@
 ; h : move the data pointer to point to the next cell to the left
 ; w : output the byte at the data pointer.
 ; r : accept one byte of input, storing its value in the byte at the data pointer
-; b : evaluate the inner code unless the byte at the data pointer is zero 
-(defn evaluate_node [memory c]
+; b : evaluate the inner code unless the byte at the data pointer is zero
+(defn evaluate-node [memory c]
   (cond
     (= (first c) :p ) (mem/increment  memory)
     (= (first c) :m ) (mem/decrement  memory)
@@ -20,11 +20,11 @@
     (= (first c) :l ) (mem/move-right memory)
     (= (first c) :r ) (let [ch (.read *in*)] (mem/write-in memory ch))
     (= (first c) :w ) (do (print (str (char (mem/read-out memory)))) (flush) memory)
-    (= (first c) :b ) (if (= (mem/read-out memory) 0) memory (evaluate_node (evaluate_tree memory (rest c) ) c))
+    (= (first c) :b ) (if (= (mem/read-out memory) 0) memory (evaluate-node (evaluate-tree memory (rest c) ) c))
     :else memory ; Ignore everything else
   )
 )
 
 
 ; Evaluates parsed code calling evaluate_node for each single intruction
-(defn evaluate_tree [memory tree] (reduce (fn [memory node] (evaluate_node memory node)) memory tree))
+(defn evaluate-tree [memory tree] (reduce evaluate-node memory tree))
